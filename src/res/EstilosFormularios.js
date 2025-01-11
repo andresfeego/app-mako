@@ -35,7 +35,7 @@ export const stylesForm = StyleSheet.create({
         
     },
     iconSmall: {
-        borderRadius: 0,
+        borderRadius: 70,
         position: 'absolute',
         top: -30,
         right: -30,

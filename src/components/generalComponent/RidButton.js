@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Pressable } from 'react-native';
 import BotonMenu from '../home/header/components/BotonMenu';
 import colors from '../../res/colors';
 
-class RidButton extends Component {
+class MakoButton extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -64,7 +64,7 @@ class RidButton extends Component {
 const styles = StyleSheet.create({
 
     boton: {
-        borderRadius: 50,
+        borderRadius: 70,
         backgroundColor: colors.primary,
         flexDirection: 'row',
         elevation: 2,
@@ -91,4 +91,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default RidButton;
+export default MakoButton;

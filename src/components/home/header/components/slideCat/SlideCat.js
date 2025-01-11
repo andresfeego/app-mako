@@ -132,7 +132,7 @@ class Header extends Component {
             <Pressable style={styles.circulo}>
               <View style={styles.cajaicono}>
                 <Image
-                  source={require('../../../../../assets/asaderos.png')}
+                  source={require('../../../../../assets/bares.png')}
                   style={styles.icono}
                   resizeMode='contain'
                 />
@@ -140,14 +140,14 @@ class Header extends Component {
               <View style={styles.cajatexto}>
                 <Text
                   style={styles.texto}
-                >Asaderos</Text>
+                >Bares</Text>
               </View>
             </Pressable>
 
             <Pressable style={styles.circulo}>
               <View style={styles.cajaicono}>
                 <Image
-                  source={require('../../../../../assets/asaderos.png')}
+                  source={require('../../../../../assets/cafe.png')}
                   style={styles.icono}
                   resizeMode='contain'
                 />
@@ -155,14 +155,14 @@ class Header extends Component {
               <View style={styles.cajatexto}>
                 <Text
                   style={styles.texto}
-                >Asaderos</Text>
+                >Cafes</Text>
               </View>
             </Pressable>
 
             <Pressable style={styles.circulo}>
               <View style={styles.cajaicono}>
                 <Image
-                  source={require('../../../../../assets/asaderos.png')}
+                  source={require('../../../../../assets/china.png')}
                   style={styles.icono}
                   resizeMode='contain'
                 />
@@ -170,7 +170,7 @@ class Header extends Component {
               <View style={styles.cajatexto}>
                 <Text
                   style={styles.texto}
-                >Asaderos</Text>
+                >Comida china</Text>
               </View>
             </Pressable>
 
@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
     zIndex: -1000,
     bottom: 75,
     right: 80,
-    transform: [{ rotate: '23deg' }],
+    transform: [{ rotate: '30deg' }],
   },
   scroll: {
     zIndex:10000,
@@ -240,22 +240,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   circulo: {
-    width: 68,
-    margin: 5,
-    top: 5,
+    width: 55,
+    height: 75, 
+    margin: 8,
+    top: 70,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    transform: [{ rotate: '-23deg' }],
+    transform: [{ rotate: '-30deg' }],
 
   },
   cajaicono: {
-    padding: 25,
+    padding: 22,
     width: 40,
     height: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 50,
+    borderRadius: 70,
     backgroundColor: colors.secondary
   },
   icono: {
@@ -264,11 +265,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   cajatexto: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    height: 100,
   },
   texto: {
-    display: 'flex',
+    fontSize: 10, 
+    fontWeight: 'bold', 
+    color: 'black',
+    textAlign: 'center'
   },
 });
 

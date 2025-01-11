@@ -12,13 +12,13 @@ class ListEmp extends Component {
               <Pressable style={styles.circulo}>
                 <View>
                   <Image
-                    source={require('../../../../../assets/asaderos.png')}
-                    style={styles.icono}
+                    source={require('../../../../../assets/mapache.png')}
+                    style={[styles.icono, { tintColor: 'black' }]}
                     resizeMode='contain'
                   />
                 </View>
                 <View style={styles.cajatexto}>
-                  <Text style={styles.texto}>Asaderos</Text>
+                  <Text style={styles.texto}>Favoritos</Text>
                 </View>
               </Pressable>
             </View>
@@ -32,7 +32,7 @@ class ListEmp extends Component {
 const styles = StyleSheet.create({
   general: {
     height: 'auto',
-    zIndex: 10000,
+    zIndex: 1,
   },
   listaempre: {
     bottom: 80,
@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
     height: 'auto',
     alignItems: 'start',
     justifyContent: 'center',
-    transform: [{ rotate: '23deg' }],
-    borderRadius: 60,
+    transform: [{ rotate: '30deg' }],
+    borderRadius: 70,
     left: -28,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -58,13 +58,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   circulo: {
-    width: 68,
-    margin: 5,
-    top: 5,
+    width: 85,
+    margin: 10,
+    top: -4,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    transform: [{ rotate: '-23deg' }],
+    transform: [{ rotate: '-30deg' }],
   },
   icono: {
     width: 30,

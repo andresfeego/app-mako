@@ -18,10 +18,10 @@ function usuarioReducer(state = auxiusuario, action) {
     }
 }
 
-function navigationRidReducer(state = [], action) {
+function navigationMakoReducer(state = [], action) {
     switch (action.type) {
         case 'SET_NAVIGATIONRED':
-            return action.navigationRid;
+            return action.navigationMako;
 
         case 'CLEAR_NAVIGATIONRED':
             return '';
@@ -34,7 +34,7 @@ function navigationRidReducer(state = [], action) {
 
 let rootReducer = combineReducers({
     usuario: usuarioReducer,  // usuario logueado en el sistema
-    navigationRid: navigationRidReducer
+    navigationMako: navigationMakoReducer
 });
 
 

@@ -11,14 +11,12 @@ import localStore from './src/res/localStore/LocalStore';
 const App = () => {
   return (
     <NavigationContainer>
+      
       <Provider store={localStore}>
       <PaperProvider theme={theme} >
 
           <CoinsStack />
           </PaperProvider>
-
-       
-
 
       </Provider>
     </NavigationContainer>

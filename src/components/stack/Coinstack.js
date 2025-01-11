@@ -7,9 +7,9 @@ import Home from '../home/Home';
 
 const Stack = createStackNavigator();
 
-const CoinsStack = () => {
-
+export function CoinsStack() {
     return (
+
         <Stack.Navigator
             screenOptions={{
                 headerShown: false
@@ -18,7 +18,9 @@ const CoinsStack = () => {
             <Stack.Screen name="Splash" component={Splash} />
             <Stack.Screen name="Home" component={Home} />
         </Stack.Navigator>
-    );
 
+    );
 }
+
+
 export default CoinsStack;

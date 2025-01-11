@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-        navigationRid: state.navigationRid
+        navigationMako: state.navigationMako
     }
 }
 
