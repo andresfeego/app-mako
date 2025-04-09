@@ -21,6 +21,8 @@ const colors = {
     primaryLight:'#ffc9a4',
     secondaryLight: '#89a0e6',
     
+    ligthGray: '#bdc3c7',
+    gray: '#7f8c8d',
     gray0: '#383838',
     gray1: '#505050',
     gray2: '#636363',

@@ -1,7 +1,6 @@
 import { Toast } from 'toastify-react-native';
 import React from 'react';
-/* import BounceLoader from "react-spinners/BounceLoader"; */
-import BotonMenu, { type } from '../home/header/components/BotonMenu';
+import BotonMenu, { type } from '../generalComponent/BotonMenu';
 import colors from '../../res/colors';
 import { View, Text } from 'react-native';
 

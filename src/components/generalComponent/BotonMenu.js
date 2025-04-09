@@ -16,7 +16,7 @@ import IconMaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import IconOcticons from 'react-native-vector-icons/Octicons';
 import IconSimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import IconZocial from 'react-native-vector-icons/Zocial';
-import colors from '../../../../../res/colors';
+import colors from '../../res/colors';
 import { connect } from 'react-redux';
 
 export const type = {
@@ -154,7 +154,7 @@ class BotonMenu extends Component {
 
             default:
                 return (
-                    <IconZocial name={'home'} size={iconSize} color={iconColor} style={stylesIcon} />
+                    <IconZocial name={'DirectorioWeb'} size={iconSize} color={iconColor} style={stylesIcon} />
                 )
                 break;
         }

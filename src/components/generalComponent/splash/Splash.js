@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Animated, Dimensions } from 'react-native'
-import { setNavigationRed } from '../../res/localStore/Actions';
+import { setNavigationRed } from '../../../res/localStore/Actions';
 import { connect } from 'react-redux';
 
 
@@ -22,7 +22,7 @@ class Splash extends Component {
         this.iniciarAnimacion();
         this.props.setNavigationRed(this.props.navigation);
         setTimeout(() => {
-            this.props.navigation.navigate("Home")
+            this.props.navigation.navigate("GeneralContainer")
             }, 1500);
     }
 
@@ -111,9 +111,9 @@ class Splash extends Component {
             backgroundGradientTo: "#08130D",
             backgroundGradientToOpacity: 0.5,
             color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-            strokeWidth: 2, // optional, default 3
+            strokeWidth: 2, 
             barPercentage: 0.5,
-            useShadowColorFromDataset: false // optional
+            useShadowColorFromDataset: false 
         };
 
         var displayForm = this.state.finishAnimated ? 'absolute' : 'none';
@@ -127,7 +127,7 @@ class Splash extends Component {
 
                     <Animated.Image
                         style={styleImage} resizeMode='contain'
-                        source={require('../../assets/logomako.png')}
+                        source={require('../..//../assets/logomako.png')}
 
                     />
                 </View>

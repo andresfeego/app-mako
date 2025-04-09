@@ -24,7 +24,7 @@ export const LoaderUno = (props) => (
 )
 
 
-export const HomeLoader = (props) => (
+export const DirectorioWebLoader = (props) => (
     <ContentLoader
     speed={1}
     width={400}

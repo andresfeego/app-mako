@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Pressable, StyleSheet  } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import colors from '../../res/colors';
-import BotonMenu  from '../home/header/components/BotonMenu';
+import BotonMenu  from '../generalComponent/BotonMenu';
 
 
 class GoBackBar extends Component {

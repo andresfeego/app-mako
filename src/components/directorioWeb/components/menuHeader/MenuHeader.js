@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions, Animated } from 'react-native';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import colors from '../../../../../res/colors';
-import BotonMenu, { type } from './BotonMenu';
+import colors from '../../../../res/colors';
+import BotonMenu, { type } from '../../../generalComponent/BotonMenu';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const offSetHorizontal = windowWidth * 0.8;
+const offSetHorizontal = windowWidth * 0.83;
 
 class MenuHeader extends Component {
   constructor(props) {
@@ -103,12 +103,12 @@ class MenuHeader extends Component {
 
           <View style={styles.listaMenu}>
 
-            <BotonMenu color="black" type={type.FontAwesome} icon='user' label={'  Mi cuenta'} goTo={'ViewDependencias'}></BotonMenu>
-            <BotonMenu color="black" type={type.AntDesign} icon='pluscircleo' label={'Registrar comercio'} goTo={'ViewOrganismos'}></BotonMenu>
-            <BotonMenu color="black" type={type.AntDesign} icon='hearto' label={'Mis favoritos'} goTo={'ViewAuditores'}></BotonMenu>
-            <BotonMenu color="black" type={type.MaterialIcons} icon='app-registration' label={'Mis registros'} goTo={'ViewReportantes'}></BotonMenu>
-            <BotonMenu color="black" type={type.MaterialIcons} icon='attach-money' label={'Mis comisiones'} goTo={'ViewManualesFunciones'}></BotonMenu>
-            <BotonMenu color="black" type={type.AntDesign} icon='isv' label={'Mi comercio'} goTo={'ViewManualesObligaciones'}></BotonMenu>
+            <BotonMenu color="black" type={type.FontAwesome} icon='user' label={'  Mi cuenta'} goTo={'ViewDependencias'} labelStyle={{ color: colors.gray1, fontSize: 18, fontWeight: 'bold' }}></BotonMenu>
+            <BotonMenu color="black" type={type.AntDesign} icon='pluscircleo' label={'Registrar comercio'} goTo={'ViewOrganismos'} labelStyle={{ color: colors.gray1, fontSize: 18, fontWeight: 'bold' }}></BotonMenu>
+            <BotonMenu color="black" type={type.AntDesign} icon='hearto' label={'Mis favoritos'} goTo={'ViewAuditores'} labelStyle={{ color: colors.gray1, fontSize: 18, fontWeight: 'bold' }}></BotonMenu>
+            <BotonMenu color="black" type={type.MaterialIcons} icon='app-registration' label={'Mis registros'} goTo={'ViewReportantes'} labelStyle={{ color: colors.gray1, fontSize: 18, fontWeight: 'bold' }}></BotonMenu>
+            <BotonMenu color="black" type={type.MaterialIcons} icon='attach-money' label={'Mis comisiones'} goTo={'ViewManualesFunciones'} labelStyle={{ color: colors.gray1, fontSize: 18, fontWeight: 'bold' }}></BotonMenu>
+            <BotonMenu color="black" type={type.AntDesign} icon='isv' label={'Mi comercio'} goTo={'ViewManualesObligaciones'} labelStyle={{ color: colors.gray1, fontSize: 18, fontWeight: 'bold' }}></BotonMenu>
 
           </View>
 
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
   },
   header: {
     width: '100%',
-    height: 150,
+    height: '16%',
     backgroundColor: colors.gray5,
     alignItems: 'center',
     paddingTop: 25
@@ -174,15 +174,16 @@ const styles = StyleSheet.create({
   buttonText: {
     alignItems: 'center',
     backgroundColor: colors.primary,
+    color: colors.gray0,
     borderRadius: 40,
     paddingLeft: 19,
     paddingRight: 19,
-    paddingVertical: 5,  
-    shadowColor: '#000', 
-    shadowOffset: { width: 0, height: 4 },  
-    shadowOpacity: 0.1, 
-    shadowRadius: 5,  
-    elevation: 5, 
+    paddingVertical: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 5,
   },
   botonMenu: {
     display: 'flex',
@@ -190,8 +191,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingVertical: 10,
   },
-  texMenu: {
-    textAlignVertical: 'center'
+  textMenu: {
+    color: 'black', 
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   listaMenu: {
     width: '100%',

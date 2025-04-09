@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, Pressable, ScrollView } from 'react-native';
-import colors from '../../../../../res/colors';
+import colors from '../../../../res/colors';
 
 class Header extends Component {
 
@@ -25,7 +25,7 @@ class Header extends Component {
             <Pressable style={styles.circulo}>
               <View style={styles.cajaicono}>
                 <Image
-                  source={require('../../../../../assets/mapache.png')}
+                  source={require('../../../../assets/mapache.png')}
                   style={styles.icono}
                   resizeMode='contain'
                 />
@@ -41,7 +41,7 @@ class Header extends Component {
             <Pressable style={styles.circulo}>
               <View style={styles.cajaicono}>
                 <Image
-                  source={require('../../../../../assets/domi.png')}
+                  source={require('../../../../assets/domi.png')}
                   style={styles.icono}
                   resizeMode='contain'
 
@@ -57,7 +57,7 @@ class Header extends Component {
             <Pressable style={styles.circulo}>
               <View style={styles.cajaicono}>
                 <Image
-                  source={require('../../../../../assets/taxi.png')}
+                  source={require('../../../../assets/taxi.png')}
                   style={styles.icono}
                   resizeMode='contain'
                 />
@@ -72,7 +72,7 @@ class Header extends Component {
             <Pressable style={styles.circulo}>
               <View style={styles.cajaicono}>
                 <Image
-                  source={require('../../../../../assets/lavadora.png')}
+                  source={require('../../../../assets/lavadora.png')}
                   style={styles.icono}
                   resizeMode='contain'
                 />
@@ -87,7 +87,7 @@ class Header extends Component {
             <Pressable style={styles.circulo}>
               <View style={styles.cajaicono}>
                 <Image
-                  source={require('../../../../../assets/cerradura.png')}
+                  source={require('../../../../assets/cerradura.png')}
                   style={styles.icono}
                   resizeMode='contain'
                 />
@@ -102,7 +102,7 @@ class Header extends Component {
             <Pressable style={styles.circulo}>
               <View style={styles.cajaicono}>
                 <Image
-                  source={require('../../../../../assets/acarreos.png')}
+                  source={require('../../../../assets/acarreos.png')}
                   style={styles.icono}
                   resizeMode='contain'
                 />
@@ -117,7 +117,7 @@ class Header extends Component {
             <Pressable style={styles.circulo}>
               <View style={styles.cajaicono}>
                 <Image
-                  source={require('../../../../../assets/asaderos.png')}
+                  source={require('../../../../assets/asaderos.png')}
                   style={styles.icono}
                   resizeMode='contain'
                 />
@@ -132,7 +132,7 @@ class Header extends Component {
             <Pressable style={styles.circulo}>
               <View style={styles.cajaicono}>
                 <Image
-                  source={require('../../../../../assets/bares.png')}
+                  source={require('../../../../assets/bares.png')}
                   style={styles.icono}
                   resizeMode='contain'
                 />
@@ -147,7 +147,7 @@ class Header extends Component {
             <Pressable style={styles.circulo}>
               <View style={styles.cajaicono}>
                 <Image
-                  source={require('../../../../../assets/cafe.png')}
+                  source={require('../../../../assets/cafe.png')}
                   style={styles.icono}
                   resizeMode='contain'
                 />
@@ -162,7 +162,7 @@ class Header extends Component {
             <Pressable style={styles.circulo}>
               <View style={styles.cajaicono}>
                 <Image
-                  source={require('../../../../../assets/china.png')}
+                  source={require('../../../../assets/china.png')}
                   style={styles.icono}
                   resizeMode='contain'
                 />
@@ -177,7 +177,7 @@ class Header extends Component {
             <Pressable style={styles.circulo}>
               <View style={styles.cajaicono}>
                 <Image
-                  source={require('../../../../../assets/asaderos.png')}
+                  source={require('../../../../assets/asaderos.png')}
                   style={styles.icono}
                   resizeMode='contain'
                 />

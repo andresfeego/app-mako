@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
-import BotonMenu from '../home/header/components/BotonMenu';
+import BotonMenu from '../generalComponent/BotonMenu';
 import colors from '../../res/colors';
 
 class MakoButton extends Component {

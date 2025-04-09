@@ -4,32 +4,30 @@ import { TextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon1 from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
-import colors from '../../../../../res/colors';
-import MenuHeader from '../MenuHeader/MenuHeader';
+import colors from '../../../../res/colors';
+import MenuHeader from '../menuHeader/MenuHeader';
 
 const Header = () => {
   const navigation = useNavigation();
 
   return (
     <View style={styles.header}>
-          <MenuHeader />
+      <MenuHeader />
       <View style={styles.headerimage}>
-        <Pressable onPress={() => navigation.navigate('Home')}>
           <Image
-            source={require('../../../../../assets/logomako.png')}
+            source={require('../../../../assets/logomako.png')}
             style={styles.icon}
           />
-        </Pressable>
       </View>
 
       <View style={styles.headersearch}>
         <TextInput
-          placeholder="Que buscas ?"
+          placeholder="Que buscas ?  "
           outlineStyle={styles.textInput}
           mode={'outlined'}
         />
         <TextInput
-          placeholder="En que ciudad lo buscas ?"
+          placeholder="En que ciudad lo buscas ?  "
           outlineStyle={styles.textInput}
           mode={'outlined'}
         />
@@ -39,7 +37,7 @@ const Header = () => {
         <Pressable style={styles.searchicon} onPress={() => navigation.goBack()}>
           <Icon size={33} name="search" color="black" />
         </Pressable>
-       {/*  <Pressable style={styles.user} onPress={() => navigation.navigate("")}>
+        {/*  <Pressable style={styles.user} onPress={() => navigation.navigate("")}>
           <Icon1 size={33} name="user" color="black" />
         </Pressable> */}
       </View>
@@ -53,7 +51,7 @@ const styles = StyleSheet.create({
     zIndex: 20,
     width: '100%',
     height: '9%',
-    padding: 3,
+    padding: -40,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: colors.primary,
@@ -69,16 +67,25 @@ const styles = StyleSheet.create({
   },
   headersearch: {
     flex: 1,
-    paddingTop: 40,
+    width: "100%",
+    marginEnd:-40,
+    paddingTop: 20,
     justifyContent: 'center',
-    alignItems: 'stretch',
+    alignItems: 'baseline',
   },
   textInput: {
-    marginBottom: 12,
-    marginTop: 12,
-    top: '5%',
+    marginBottom: 10, // Reduce el margen inferior
+    marginTop: 10, // Reduce el margen superior
     borderRadius: 40,
-    marginVertical: 8,
+    backgroundColor: '#FFFFFF', // Fondo blanco
+    borderWidth: 1, // Borde
+    borderColor: colors.secondary, // Color del borde
+    shadowColor: '#000', // Sombra
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5,
+    paddingHorizontal: 10,
   },
   icons: {
     width: '20%',

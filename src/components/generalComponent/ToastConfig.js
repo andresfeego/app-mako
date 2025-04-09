@@ -2,7 +2,7 @@ import React from 'react';
 import { BaseToast } from 'react-native-toast-message';
 import { View } from 'react-native';
 import colors from '../../res/colors';
-import BotonMenu, { type } from '../home/header/components/BotonMenu';
+import BotonMenu, { type } from '../generalComponent/BotonMenu';
 
 var fontSizeText1 = 20;
 var fontSizeText2 = 17;
