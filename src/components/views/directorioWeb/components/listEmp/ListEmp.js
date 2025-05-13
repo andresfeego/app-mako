@@ -1,33 +1,30 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Image, ScrollView, Pressable, Text, Modal } from 'react-native';
-import colors from '../../../../res/colors';
+import { TextInput } from 'react-native-paper';
 import IconFontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
+import colors from '../../../../../res/colors';
 
 const ListEmp = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isFilterModalVisible, setIsFilterModalVisible] = useState(false);
   const navigation = useNavigation();
 
   const toggleModal = () => {
     setIsModalVisible(!isModalVisible);
   };
 
+  const toggleFilterModal = () => {
+    setIsFilterModalVisible(!isFilterModalVisible);
+  };
+
   return (
     <View style={styles.general}>
-      <Modal
-        transparent={true}
-        visible={isModalVisible}
-        animationType="fade"
-        onRequestClose={toggleModal}
-      >
+      <Modal transparent visible={isModalVisible} animationType="fade" onRequestClose={toggleModal}>
         <View style={styles.modalBackground}>
           <View style={styles.modalCard}>
             <View style={styles.modalHeader}>
-              <Image
-                source={require('../../../../assets/mapache.png')}
-                style={styles.logo}
-                resizeMode="contain"
-              />
+              <Image source={require('../../../../../assets/mapache.png')} style={styles.logo} resizeMode="contain" />
               <View style={styles.headerTextContainer}>
                 <Text style={styles.companyName}>Nombre empresa</Text>
                 <Text style={styles.location}>Departamento - Municipio</Text>
@@ -39,7 +36,6 @@ const ListEmp = () => {
                 <Text style={styles.closeButtonText}>X</Text>
               </Pressable>
             </View>
-
             <View style={styles.contactInfo}>
               {[
                 { icon: 'store-alt', text: 'Restaurante y Comidas Rápidas' },
@@ -62,32 +58,53 @@ const ListEmp = () => {
         </View>
       </Modal>
 
+      <Modal transparent visible={isFilterModalVisible} animationType="fade" onRequestClose={toggleFilterModal}>
+        <View style={styles.modalBackground}>
+          <View style={styles.filterCard}>
+            <Pressable onPress={toggleFilterModal} style={styles.closeFilter}>
+              <Text style={styles.closeButtonText}>X</Text>
+            </Pressable>
+            <TextInput
+              placeholder="¿Qué buscas?"
+              outlineStyle={styles.textInput}
+              mode="outlined"
+              style={{ width: '100%', marginBottom: 20 }}
+            />
+            <TextInput
+              placeholder="Filtrar por ciudad"
+              outlineStyle={styles.textInput}
+              mode="outlined"
+              style={{ width: '100%', marginBottom: 20 }}
+            />
+            <Pressable style={styles.searchiconModal}>
+              <IconFontAwesome5 name="search" size={24} color="white" />
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+
       <View style={styles.listaempre}>
+        <Pressable style={styles.filterButton} onPress={toggleFilterModal}>
+          <IconFontAwesome5 name="th-large" size={24} color="black" />
+        </Pressable>
         <ScrollView
           style={styles.scroll}
-          horizontal={true}
+          horizontal
           showsHorizontalScrollIndicator={false}
+          bounces={false}
+          contentContainerStyle={{ paddingBottom: 300 }}
         >
-          <View style={styles.touch}></View>
+          <View style={styles.touch} />
         </ScrollView>
       </View>
 
       <View style={styles.list}>
         <Pressable style={styles.circulo} onPress={toggleModal}>
-          <Image
-            source={require('../../../../assets/mapache.png')}
-            style={[styles.icon, { tintColor: 'black' }]}
-            resizeMode="contain"
-          />
+          <Image source={require('../../../../../assets/mapache.png')} style={[styles.icon, { tintColor: 'black' }]} resizeMode="contain" />
           <Text style={styles.texto}>Favoritos</Text>
         </Pressable>
-
         <Pressable style={styles.circulo} onPress={() => navigation.navigate('PerfilUno')}>
-          <Image
-            source={require('../../../../assets/lavadora.png')}
-            style={[styles.icon, { tintColor: 'black' }]}
-            resizeMode="contain"
-          />
+          <Image source={require('../../../../../assets/lavadora.png')} style={[styles.icon, { tintColor: 'black' }]} resizeMode="contain" />
           <Text style={styles.texto}>PerfilUno</Text>
         </Pressable>
       </View>
@@ -116,6 +133,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     padding: 20,
     position: 'relative',
+    overflow: 'hidden',
   },
   list: {
     left: 10,
@@ -165,12 +183,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 60, 
-    height: 60, 
-    borderRadius: 30, 
-    borderWidth: 2,  
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    borderWidth: 2,
     borderColor: 'white',
-    backgroundColor: 'black', 
+    backgroundColor: 'black',
     padding: 25,
   },
   headerTextContainer: {
@@ -218,6 +236,59 @@ const styles = StyleSheet.create({
   infoText: {
     fontSize: 14,
     color: 'black',
+  },
+  scroll: {},
+  touch: {},
+  icon: {
+    width: 40,
+    height: 40,
+  },
+  filterButton: {
+    position: 'absolute',
+    top: 50,
+    left: 50,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: 'white',
+    borderWidth: 2,
+    borderColor: colors.secondary,
+    justifyContent: 'center',
+    alignItems: 'center',
+    transform: [{ rotate: '-30deg' }],
+    zIndex: 10,
+  },
+  filterCard: {
+    width: 320,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    paddingVertical: 30,
+    paddingHorizontal: 25,
+    alignItems: 'center',
+    position: 'relative',
+    zIndex: 10,
+  },
+  closeFilter: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    zIndex: 11,
+  },
+  textInput: {
+    borderRadius: 40,
+    backgroundColor: '#FFFFFF',
+    borderColor: colors.secondary,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  searchiconModal: {
+    backgroundColor: colors.secondary,
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    borderRadius: 30,
   },
 });
 
