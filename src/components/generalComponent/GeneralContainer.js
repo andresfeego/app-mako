@@ -1,74 +1,79 @@
-import React from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
-import DirectorioWeb from '../directorioWeb/DirectorioWeb';
-import GeneralMenu from '../directorioWeb/components/generalMenu/GeneralMenu';
+import React, { useState } from 'react';
+import { View, StyleSheet } from 'react-native';
+import DirectorioWeb from '../views/directorioWeb/DirectorioWeb';
+import GeneralMenu from '../views/directorioWeb/components/generalMenu/GeneralMenu';
 import { type } from '../generalComponent/BotonMenu';
-
+import MiDirectorio from '../views/miDirectorio/MiDirectorio';
+import MenuHeader from '../views/directorioWeb/components/menuHeader/MenuHeader';
+import LoginOptions from '../generalComponent/login/LoginOptions';
+import Usuario from '../views/usuarios/Usuario';
 
 const buttons = [
-
   {
-    nombre: "Boton 1",
-    icon: 'weather-lightning-rainy',
+    nombre: 'Mi directorio',
+    icon: 'telephone',
     idMenu: 1,
-    type: type.MaterialCommunityIcons,
-    idInterface: 2
-
+    type: type.Foundation,
+    idInterface: 1,
   },
   {
-    nombre: "Boton 2",
-    icon: 'tasks',
+    nombre: 'Directorio',
+    icon: 'phone-portrait-outline',
     idMenu: 2,
-    type: type.FontAwesome5,
-    idInterface: 3
-
+    type: type.Ionicons,
+    idInterface: 2,
   },
   {
-    nombre: "Boton 3",
-    icon: 'DirectorioWeb',
+    nombre: 'Usuario',
+    icon: 'user',
     idMenu: 3,
-    type: type.AntDesign,
-    idInterface: 4
-
-  },
-  {
-    nombre: "Boton 3",
-    icon: 'alert-triangle',
-    idMenu: 4,
     type: type.Feather,
-    idInterface: 5
-
+    idInterface: 3,
   },
-  {
-    nombre: "Boton 3",
-    icon: 'notification',
-    idMenu: 5,
-    type: type.AntDesign,
-    idInterface: 6
-
-  }
-]
- 
-
-
+];
 
 const GeneralContainer = () => {
+  const [activeView, setActiveView] = useState(2);
+  const [showLogin, setShowLogin] = useState(false);
+
+  const renderContenido = () => {
+    switch (activeView) {
+      case 1:
+        return <MiDirectorio />;
+      case 2:
+        return <DirectorioWeb />;
+      case 3:
+        return <Usuario />;
+      default:
+        return null;
+    }
+  };
+
   return (
-      <View style={styles.container}>
-        <DirectorioWeb />
-        <GeneralMenu activeButtons={buttons}/>  
-      </View >
+    <View style={styles.container}>
+      {renderContenido()}
+      <GeneralMenu activeButtons={buttons} onChangeTab={setActiveView} />
+      
+      {showLogin && (
+        <View style={StyleSheet.absoluteFillObject}>
+          <LoginOptions
+            onMakoPress={() => {}}
+            onLoginSuccess={() => setShowLogin(false)}
+          />
+        </View>
+      )}
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'start',
-    alignItems: 'start',
-
+  },
+  blankView: {
+    flex: 1,
+    backgroundColor: 'white',
   },
 });
 
 export default GeneralContainer;
-

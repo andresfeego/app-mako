@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions, Animated } from 'react-native';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import colors from '../../../../res/colors';
-import BotonMenu, { type } from '../../../generalComponent/BotonMenu';
+import colors from '../../../../../res/colors';
+import BotonMenu, { type } from '../../../../generalComponent/BotonMenu';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

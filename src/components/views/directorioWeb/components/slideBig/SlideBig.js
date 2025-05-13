@@ -1,46 +1,46 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Image, Text, Animated } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-import colors from '../../../../res/colors';
+import colors from '../../../../../res/colors';
 
 class SlideBig extends Component {
   state = {
     slides: [
       {
-        image: require('../../../../assets/vet.jpg'),
-        title: "Tienes una emergencia             \nveterinaria?",
-        subtitle: "Veterinaria",
-        iconImage: require('../../../../assets/logomako.png'),
+        image: require('../../../../../assets/vet.jpg'),
+        title: 'Tienes una emergencia             \nveterinaria?',
+        subtitle: 'Veterinaria',
+        iconImage: require('../../../../../assets/logomako.png'),
       },
       {
-        image: require('../../../../assets/alt.jpg'),
-        title: "Ocasion especial? Nosotros te \ndecoramos el lugar.",
-        subtitle: "Eventos",
-        iconImage: require('../../../../assets/logomako.png'),
+        image: require('../../../../../assets/alt.jpg'),
+        title: 'Ocasion especial? Nosotros te \ndecoramos el lugar.',
+        subtitle: 'Eventos',
+        iconImage: require('../../../../../assets/logomako.png'),
       },
       {
-        image: require('../../../../assets/cocinero.jpg'),
-        title: "Almuerzo ejecutivo, encuentra \naquí nuestro menú \ndiario.",
-        subtitle: "Asaderos",
-        iconImage: require('../../../../assets/logomako.png'),
+        image: require('../../../../../assets/cocinero.jpg'),
+        title: 'Almuerzo ejecutivo, encuentra \naquí nuestro menú \ndiario.',
+        subtitle: 'Asaderos',
+        iconImage: require('../../../../../assets/logomako.png'),
       },
       {
-        image: require('../../../../assets/carne.jpg'),
-        title: "Se te antoja un buen asado de\ncarne.",
-        subtitle: "Asaderos",
-        iconImage: require('../../../../assets/logomako.png'),
+        image: require('../../../../../assets/carne.jpg'),
+        title: 'Se te antoja un buen asado de\ncarne.',
+        subtitle: 'Asaderos',
+        iconImage: require('../../../../../assets/logomako.png'),
       },
       {
-        image: require('../../../../assets/bar.jpg'),
-        title: "Buscas algo de diversión en tu\nciudad?",
-        subtitle: "Bares",
-        iconImage: require('../../../../assets/logomako.png'),
+        image: require('../../../../../assets/bar.jpg'),
+        title: 'Buscas algo de diversión en tu\nciudad?',
+        subtitle: 'Bares',
+        iconImage: require('../../../../../assets/logomako.png'),
       },
       {
-        image: require('../../../../assets/postre.jpg'),
-        title: "Necesitas un pastel para\ncelebrar una ocasión especial.",
-        subtitle: "Pastelería",
-        iconImage: require('../../../../assets/logomako.png'),
+        image: require('../../../../../assets/postre.jpg'),
+        title: 'Necesitas un pastel para\ncelebrar una ocasión especial.',
+        subtitle: 'Pastelería',
+        iconImage: require('../../../../../assets/logomako.png'),
       },
     ],
     iconAnimation: new Animated.Value(0),
@@ -58,13 +58,13 @@ class SlideBig extends Component {
       useNativeDriver: true,
     }).start();
   };
+
   renderCarouselItem = ({ item }) => (
     <View style={styles.carouselItem}>
       <Image source={item.image} style={styles.carouselImage} resizeMode="cover" />
       <View style={styles.overlay}>
         <View style={styles.gradient} />
         <Text style={styles.overlayText}>{item.title}</Text>
-
         <Animated.View
           style={[
             styles.overlayIconContainer,
@@ -74,7 +74,7 @@ class SlideBig extends Component {
                 {
                   translateY: this.state.iconAnimation.interpolate({
                     inputRange: [0, 1],
-                    outputRange: [30, 0], 
+                    outputRange: [30, 0],
                   }),
                 },
               ],
@@ -82,13 +82,11 @@ class SlideBig extends Component {
           ]}
         >
           <Text style={styles.subtitleText}>{item.subtitle}</Text>
-
           <Image source={item.iconImage} style={styles.overlayIcon} resizeMode="contain" />
         </Animated.View>
       </View>
     </View>
   );
-
 
   render() {
     return (
@@ -99,8 +97,8 @@ class SlideBig extends Component {
             renderItem={this.renderCarouselItem}
             sliderWidth={800}
             itemWidth={600}
-            autoplay={true}
-            loop={true}
+            autoplay
+            loop
             onSnapToItem={this.startIconAnimation}
           />
         </View>
@@ -115,7 +113,7 @@ const styles = StyleSheet.create({
     transform: [{ rotate: '30deg' }],
     height: 500,
     width: 660,
-    left: -90,
+    left: -100,
     bottom: 150,
     alignItems: 'center',
     justifyContent: 'center',
@@ -202,8 +200,8 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   overlayIcon: {
-    left: 140,
-    top: 140,
+    left: 130,
+    top: 120,
     width: 110,
     height: 110,
   },

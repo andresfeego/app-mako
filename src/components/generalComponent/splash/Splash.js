@@ -66,41 +66,31 @@ class Splash extends Component {
 
 
     async iniciarAnimacion() {
-
         this.pulse(1).then(() => {
-
-            Animated.timing(
-                this.state.scale,
-                {
-                    toValue: 1,
-                    duration: 200,
-                    useNativeDriver: false
-                }
-            ).start();
-
-            Animated.timing(
-                
-            ).start(() => {
-                this.setState({
-                    finishAnimated: false,
-                })
-
-                Animated.timing(
-                    this.state.opacity,
-                    {
-                        toValue: 0,
-                        duration: 500,
-                        useNativeDriver: false
-                    }
-                ).start();
-
-            });
-
-        }
-
-        );
-
-    }
+          Animated.timing(
+            this.state.scale,
+            {
+              toValue: 1,
+              duration: 200,
+              useNativeDriver: false
+            }
+          ).start();
+      
+          this.setState({
+            finishAnimated: false,
+          });
+      
+          Animated.timing(
+            this.state.opacity,
+            {
+              toValue: 0,
+              duration: 500,
+              useNativeDriver: false
+            }
+          ).start();
+        });
+      }
+      
 
 
     render() {
