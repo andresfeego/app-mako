@@ -84,8 +84,9 @@ const ListEmp = () => {
       </Modal>
 
       <View style={styles.listaempre}>
+        <View style={styles.shadowUp} />
         <Pressable style={styles.filterButton} onPress={toggleFilterModal}>
-          <IconFontAwesome5 name="th-large" size={24} color="black" />
+          <IconFontAwesome5 name="filter" size={24} color={colors.white} />
         </Pressable>
         <ScrollView
           style={styles.scroll}
@@ -116,30 +117,37 @@ const styles = StyleSheet.create({
   general: {
     height: 'auto',
     zIndex: 1,
+    width: '100%'
   },
   listaempre: {
-    bottom: 80,
-    left: -178,
+    backgroundColor: colors.grisFondo,
+    top: 20,
+    right: 50,
     width: 800,
-    height: 800,
+    height: 300,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    transform: [{ rotate: '30deg' }],
+    transform: [{ rotate: '20deg' }],
     borderRadius: 100,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 1,
-    shadowRadius: 1,
-    elevation: 3,
     padding: 20,
-    position: 'relative',
-    overflow: 'hidden',
+  },
+  shadowUp: {
+    position: 'absolute',
+    top: -8,
+    left: -4,
+    right: 0,
+    height: '100%',
+    width: '100%',
+    borderRadius: 100,
+    zIndex: -1000000,
+    elevation: 4
   },
   list: {
-    left: 10,
-    top: -20,
+    backgroundColor: colors.grisFondo,
+    left: 0,
+    top: 50,
     position: 'absolute',
-    width: '100%',
+    width: '98%',
     height: 500,
     alignItems: 'center',
     justifyContent: 'flex-start',
@@ -154,8 +162,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 42.5,
-    borderWidth: 2,
-    borderColor: colors.secondary,
     backgroundColor: 'white',
   },
   texto: {
@@ -245,18 +251,16 @@ const styles = StyleSheet.create({
   },
   filterButton: {
     position: 'absolute',
-    top: 50,
-    left: 50,
+    top: 40,
+    left: 60,
+    elevation: 1,
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: 'white',
-    borderWidth: 2,
-    borderColor: colors.secondary,
+    backgroundColor: colors.gray7,
     justifyContent: 'center',
     alignItems: 'center',
-    transform: [{ rotate: '-30deg' }],
-    zIndex: 10,
+    transform: [{ rotate: '-20deg' }],
   },
   filterCard: {
     width: 320,

@@ -1,5 +1,9 @@
 const colors = {
     primary:'#ffcc29',
+    primaryLight:'#FFDC6B',
+    primaryDark:'#fbc40fff',
+
+
     secondary: '#34C1BB',
     white: '#ffffff',
     ligthGray: '#cdcdcd',
@@ -17,10 +21,11 @@ const colors = {
     infoLight: '#dbf4ff',
     warnLight: '#fff3c4',
     helpLight: '#ffefe3',
-    
-    primaryLight:'#ffc9a4',
+
+
     secondaryLight: '#89a0e6',
     
+    grisFondo: '#f6f6f6ff',
     ligthGray: '#bdc3c7',
     gray: '#7f8c8d',
     gray0: '#383838',

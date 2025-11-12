@@ -4,132 +4,40 @@ import colors from '../../../../../res/colors';
 
 class SlideCat extends Component {
   render() {
+    const items = [
+      { key: 'spacer-start' },
+      { key: 'asesor', icon: require('../../../../../assets/mapache.png'), label: 'Asesor MAKO' },
+      { key: 'domicilios', icon: require('../../../../../assets/domi.png'), label: 'Domicilios' },
+      { key: 'taxis', icon: require('../../../../../assets/taxi.png'), label: 'Taxis' },
+      { key: 'lavadoras', icon: require('../../../../../assets/lavadora.png'), label: 'Alquiler de lavadoras' },
+      { key: 'cerrajerias', icon: require('../../../../../assets/cerradura.png'), label: 'Cerrajerias' },
+      { key: 'acarreos', icon: require('../../../../../assets/acarreos.png'), label: 'Acarreos' },
+      { key: 'asaderos', icon: require('../../../../../assets/asaderos.png'), label: 'Asaderos' },
+      { key: 'bares', icon: require('../../../../../assets/bares.png'), label: 'Bares' },
+      { key: 'cafes', icon: require('../../../../../assets/cafe.png'), label: 'Cafes' },
+      { key: 'china', icon: require('../../../../../assets/china.png'), label: 'Comida china' },
+      { key: 'asaderos-2', icon: require('../../../../../assets/asaderos.png'), label: 'Asaderos' },
+      { key: 'spacer-end-1' },
+      { key: 'spacer-end-2' },
+    ];
     return (
       <View style={styles.buscat}>
         <ScrollView style={styles.scroll} horizontal={true} showsHorizontalScrollIndicator={false}>
           <View style={styles.touch}>
-            <Pressable style={styles.circulo}>
-              <View>
-              </View>
-              <View style={styles.cajatexto}>
-                <Text style={styles.texto}></Text>
-              </View>
-            </Pressable>
-
-            <Pressable style={styles.circulo}>
-              <View style={styles.cajaicono}>
-                <Image source={require('../../../../../assets/mapache.png')} style={styles.icono} resizeMode="contain" />
-              </View>
-              <View style={styles.cajatexto}>
-                <Text style={styles.texto}>Asesor MAKO</Text>
-              </View>
-            </Pressable>
-
-            <Pressable style={styles.circulo}>
-              <View style={styles.cajaicono}>
-                <Image source={require('../../../../../assets/domi.png')} style={styles.icono} resizeMode="contain" />
-              </View>
-              <View style={styles.cajatexto}>
-                <Text style={styles.texto}>Domicilios</Text>
-              </View>
-            </Pressable>
-
-            <Pressable style={styles.circulo}>
-              <View style={styles.cajaicono}>
-                <Image source={require('../../../../../assets/taxi.png')} style={styles.icono} resizeMode="contain" />
-              </View>
-              <View style={styles.cajatexto}>
-                <Text style={styles.texto}>Taxis</Text>
-              </View>
-            </Pressable>
-
-            <Pressable style={styles.circulo}>
-              <View style={styles.cajaicono}>
-                <Image source={require('../../../../../assets/lavadora.png')} style={styles.icono} resizeMode="contain" />
-              </View>
-              <View style={styles.cajatexto}>
-                <Text style={styles.texto}>Alquiler de lavadoras</Text>
-              </View>
-            </Pressable>
-
-            <Pressable style={styles.circulo}>
-              <View style={styles.cajaicono}>
-                <Image source={require('../../../../../assets/cerradura.png')} style={styles.icono} resizeMode="contain" />
-              </View>
-              <View style={styles.cajatexto}>
-                <Text style={styles.texto}>Cerrajerias</Text>
-              </View>
-            </Pressable>
-
-            <Pressable style={styles.circulo}>
-              <View style={styles.cajaicono}>
-                <Image source={require('../../../../../assets/acarreos.png')} style={styles.icono} resizeMode="contain" />
-              </View>
-              <View style={styles.cajatexto}>
-                <Text style={styles.texto}>Acarreos</Text>
-              </View>
-            </Pressable>
-
-            <Pressable style={styles.circulo}>
-              <View style={styles.cajaicono}>
-                <Image source={require('../../../../../assets/asaderos.png')} style={styles.icono} resizeMode="contain" />
-              </View>
-              <View style={styles.cajatexto}>
-                <Text style={styles.texto}>Asaderos</Text>
-              </View>
-            </Pressable>
-
-            <Pressable style={styles.circulo}>
-              <View style={styles.cajaicono}>
-                <Image source={require('../../../../../assets/bares.png')} style={styles.icono} resizeMode="contain" />
-              </View>
-              <View style={styles.cajatexto}>
-                <Text style={styles.texto}>Bares</Text>
-              </View>
-            </Pressable>
-
-            <Pressable style={styles.circulo}>
-              <View style={styles.cajaicono}>
-                <Image source={require('../../../../../assets/cafe.png')} style={styles.icono} resizeMode="contain" />
-              </View>
-              <View style={styles.cajatexto}>
-                <Text style={styles.texto}>Cafes</Text>
-              </View>
-            </Pressable>
-
-            <Pressable style={styles.circulo}>
-              <View style={styles.cajaicono}>
-                <Image source={require('../../../../../assets/china.png')} style={styles.icono} resizeMode="contain" />
-              </View>
-              <View style={styles.cajatexto}>
-                <Text style={styles.texto}>Comida china</Text>
-              </View>
-            </Pressable>
-
-            <Pressable style={styles.circulo}>
-              <View style={styles.cajaicono}>
-                <Image source={require('../../../../../assets/asaderos.png')} style={styles.icono} resizeMode="contain" />
-              </View>
-              <View style={styles.cajatexto}>
-                <Text style={styles.texto}>Asaderos</Text>
-              </View>
-            </Pressable>
-
-            <Pressable style={styles.circulo}>
-              <View>
-              </View>
-              <View style={styles.cajatexto}>
-                <Text style={styles.texto}></Text>
-              </View>
-            </Pressable>
-
-            <Pressable style={styles.circulo}>
-              <View>
-              </View>
-              <View style={styles.cajatexto}>
-                <Text style={styles.texto}></Text>
-              </View>
-            </Pressable>
+            {items.map((item) => (
+              <Pressable key={item.key} style={styles.circulo}>
+                {item.icon ? (
+                  <View style={styles.cajaicono}>
+                    <Image source={item.icon} style={styles.icono} resizeMode="contain" />
+                  </View>
+                ) : (
+                  <View />
+                )}
+                <View style={styles.cajatexto}>
+                  <Text style={styles.texto}>{item.label || ''}</Text>
+                </View>
+              </Pressable>
+            ))}
           </View>
         </ScrollView>
       </View>
@@ -142,14 +50,15 @@ const styles = StyleSheet.create({
     width: 700,
     height: '10%',
     zIndex: -1000,
-    bottom: 75,
+    top: -35,
     right: 80,
-    transform: [{ rotate: '30deg' }],
+    transform: [{ rotate: '20deg' }],
   },
   scroll: {
     zIndex: 10000,
   },
   touch: {
+    gap: 8,
     bottom: 60,
     alignItems: 'flex-start',
     width: 'auto',
@@ -164,21 +73,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    transform: [{ rotate: '-30deg' }],
+    transform: [{ rotate: '-20deg' }],
   },
   cajaicono: {
     padding: 22,
-    width: 40,
-    height: 40,
+    width: 52,
+    height: 52,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 70,
-    backgroundColor: colors.secondary,
+    borderColor: colors.secondary,
+    borderWidth: 1
   },
   icono: {
     width: 30,
     alignItems: 'center',
     justifyContent: 'center',
+    tintColor: '#34C1BB',
+    opacity: 0.8,
   },
   cajatexto: {
     flex: 1,
@@ -187,9 +99,10 @@ const styles = StyleSheet.create({
     height: 100,
   },
   texto: {
-    fontSize: 10,
+    fontSize: 8,
+    fontFamily: 'CaviarDreams',
     fontWeight: 'bold',
-    color: 'black',
+    color: colors.gray4,
     textAlign: 'center',
   },
 });

@@ -95,5 +95,22 @@ export const theme = {
       "surfaceDisabled": "rgba(32, 26, 24, 0.12)",
       "onSurfaceDisabled": "rgba(32, 26, 24, 0.38)",
       "backdrop": "rgba(59, 45, 40, 0.4)"
+    },
+    fonts: {
+      displayLarge: { fontFamily: 'CaviarDreams' },
+      displayMedium: { fontFamily: 'CaviarDreams' },
+      displaySmall: { fontFamily: 'CaviarDreams' },
+      headlineLarge: { fontFamily: 'CaviarDreams' },
+      headlineMedium: { fontFamily: 'CaviarDreams' },
+      headlineSmall: { fontFamily: 'CaviarDreams' },
+      titleLarge: { fontFamily: 'CaviarDreams' },
+      titleMedium: { fontFamily: 'CaviarDreams' },
+      titleSmall: { fontFamily: 'CaviarDreams' },
+      labelLarge: { fontFamily: 'CaviarDreams' },
+      labelMedium: { fontFamily: 'CaviarDreams' },
+      labelSmall: { fontFamily: 'CaviarDreams' },
+      bodyLarge: { fontFamily: 'CaviarDreams' },
+      bodyMedium: { fontFamily: 'CaviarDreams' },
+      bodySmall: { fontFamily: 'CaviarDreams' },
     }
   };

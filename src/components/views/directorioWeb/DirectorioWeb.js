@@ -5,12 +5,14 @@ import Search from './components/search/Search';
 import SlideBig from './components/slideBig/SlideBig';
 import SlideCat from './components/slideCat/SlideCat';
 import ListEmp from './components/listEmp/ListEmp';
+import SearchCountry from './components/searchCountry/SearchCountry';
 
 class DirectorioWeb extends Component {
   render() {
     return (
       <ScrollView style={styles.container}>
         <Search style={styles.header} />
+        <SearchCountry/>
         <View style={styles.contcateg}>
           <SlideBig />
           <SlideCat />
@@ -24,7 +26,8 @@ class DirectorioWeb extends Component {
 const styles = StyleSheet.create({
 
   container: {
-   position:"relative"
+   position:"relative",
+   backgroundColor: 'white'
   },
   header: {
     width: '100%',
