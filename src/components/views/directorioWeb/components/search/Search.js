@@ -7,9 +7,23 @@ import { useNavigation } from '@react-navigation/native';
 import colors from '../../../../../res/colors';
 import MenuHeader from '../menuHeader/MenuHeader';
 import { red100 } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSearch } from '../../../../../res/localStore/Actions';
 
 const Search = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const busquedaStore = useSelector((s) => s.search?.busqueda || '');
+  const [busqueda, setBusqueda] = React.useState(busquedaStore);
+
+  React.useEffect(() => {
+    setBusqueda(busquedaStore);
+  }, [busquedaStore]);
+
+  const onChange = (val) => {
+    setBusqueda(val);
+    dispatch(setSearch({ busqueda: val }));
+  };
 
   return (
     <View style={styles.header}>
@@ -24,12 +38,29 @@ const Search = () => {
           style={styles.textInput}
           outlineStyle={styles.textInputOutline}
           contentStyle={styles.textInputContent}
+          value={busqueda}
+          onChangeText={onChange}
+          autoCorrect={false}
+          autoCapitalize="none"
+          autoComplete="off"
         />
         
       </View>
       <View style={styles.icons}>
-        <Pressable style={styles.searchicon} onPress={() => navigation.goBack()}>
-          <Icon size={38} name="search" color="black" />
+        <Pressable
+          style={styles.searchicon}
+          onPress={() => {
+            if (busqueda) {
+              setBusqueda('');
+              dispatch(setSearch({ busqueda: '' }));
+            }
+          }}
+        >
+          {busqueda ? (
+            <Icon size={38} name="close" color="black" />
+          ) : (
+            <Icon size={38} name="search" color="black" />
+          )}
         </Pressable>
         <Pressable style={styles.searchicon} onPress={() => navigation.goBack()}>
           <IconAwe size={38} name="user" color="black" />

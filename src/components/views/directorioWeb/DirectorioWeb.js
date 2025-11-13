@@ -10,7 +10,7 @@ import SearchCountry from './components/searchCountry/SearchCountry';
 class DirectorioWeb extends Component {
   render() {
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.container} contentInsetAdjustmentBehavior="automatic">
         <Search style={styles.header} />
         <SearchCountry/>
         <View style={styles.contcateg}>

@@ -1,21 +1,79 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Image, ScrollView, Pressable, Text, Modal } from 'react-native';
-import { TextInput } from 'react-native-paper';
+import React, { useEffect, useMemo, useState } from 'react';
+import { View, StyleSheet, Image, Pressable, Text, Modal } from 'react-native';
 import IconFontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
 import colors from '../../../../../res/colors';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeFilterModal, openFilterModal, setSearch } from '../../../../../res/localStore/Actions';
+import FilterModal from './FilterModal';
+import { getTodasLasEmpresas } from '../../../../../services/mako/helpersGetDB';
+import EmpresasList from './EmpresasList';
+
+
 
 const ListEmp = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isFilterModalVisible, setIsFilterModalVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [empresas, setEmpresas] = useState([]);
+  const [empresaModal, setEmpresaModal] = useState(null);
+  const dispatch = useDispatch();
+  const isFilterModalVisible = useSelector((state) => state.uiFilter?.filterModalVisible);
   const navigation = useNavigation();
 
   const toggleModal = () => {
-    setIsModalVisible(!isModalVisible);
+    if (isModalVisible) {
+      setIsModalVisible(false);
+      setEmpresaModal(null);
+    } else {
+      setIsModalVisible(true);
+    }
   };
 
   const toggleFilterModal = () => {
-    setIsFilterModalVisible(!isFilterModalVisible);
+    if (isFilterModalVisible) dispatch(closeFilterModal());
+    else dispatch(openFilterModal());
+  };
+
+  const onChangeBusqueda = (text) => {
+    dispatch(setSearch({ busqueda: text }));
+  };
+
+  // Fetch empresas (estructura) y cargar lista
+  useEffect(() => {
+    const ctrl = new AbortController();
+    async function load() {
+      try {
+        setLoading(true);
+        // Intenta filtro actual desde store si existe
+        const state = undefined; // puedes tomar de Redux si lo tienes mapeado
+        const resp = await getTodasLasEmpresas();
+        // resp puede ser {status:..., data:...} o arreglo directamente; normalizamos
+        const data = Array.isArray(resp) ? resp : (resp?.data || []);
+        // eslint-disable-next-line no-console
+        console.log('[ListEmp] empresas sample:', data && data.length ? data[0] : resp);
+        setEmpresas(data || []);
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log('[ListEmp] error cargando empresas:', e?.message || e);
+        setEmpresas([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+    return () => ctrl.abort();
+  }, []);
+
+  // Agrupa en columnas de 2 cards para scroll horizontal
+  const handleCardPress = (item) => {
+    const tipo = item?.tipo || item?.type || 1;
+    if (tipo === 1) {
+      navigation.navigate('PerfilUno');
+    } else {
+      // Perfil 0: mostramos modal con info básica
+      setEmpresaModal(item);
+      setIsModalVisible(true);
+    }
   };
 
   return (
@@ -24,12 +82,12 @@ const ListEmp = () => {
         <View style={styles.modalBackground}>
           <View style={styles.modalCard}>
             <View style={styles.modalHeader}>
-              <Image source={require('../../../../../assets/mapache.png')} style={styles.logo} resizeMode="contain" />
+              <Image source={empresaModal?.logoUrl ? { uri: empresaModal.logoUrl } : require('../../../../../assets/mapache.png')} style={styles.logo} resizeMode="contain" />
               <View style={styles.headerTextContainer}>
-                <Text style={styles.companyName}>Nombre empresa</Text>
-                <Text style={styles.location}>Departamento - Municipio</Text>
+                <Text style={styles.companyName}>{empresaModal?.nombre || empresaModal?.razonSocial || 'Nombre empresa'}</Text>
+                <Text style={styles.location}>{empresaModal?.ciudad || 'Departamento - Municipio'}</Text>
                 <Text style={styles.description}>
-                  Descripción de la empresa - Descripción de la empresa - Descripción de la empresa.
+                  {empresaModal?.descripcion || 'Descripción de la empresa - Descripción de la empresa - Descripción de la empresa.'}
                 </Text>
               </View>
               <Pressable onPress={toggleModal} style={styles.closeButton}>
@@ -58,57 +116,16 @@ const ListEmp = () => {
         </View>
       </Modal>
 
-      <Modal transparent visible={isFilterModalVisible} animationType="fade" onRequestClose={toggleFilterModal}>
-        <View style={styles.modalBackground}>
-          <View style={styles.filterCard}>
-            <Pressable onPress={toggleFilterModal} style={styles.closeFilter}>
-              <Text style={styles.closeButtonText}>X</Text>
-            </Pressable>
-            <TextInput
-              placeholder="¿Qué buscas?"
-              outlineStyle={styles.textInput}
-              mode="outlined"
-              style={{ width: '100%', marginBottom: 20 }}
-            />
-            <TextInput
-              placeholder="Filtrar por ciudad"
-              outlineStyle={styles.textInput}
-              mode="outlined"
-              style={{ width: '100%', marginBottom: 20 }}
-            />
-            <Pressable style={styles.searchiconModal}>
-              <IconFontAwesome5 name="search" size={24} color="white" />
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
+      <FilterModal />
 
       <View style={styles.listaempre}>
         <View style={styles.shadowUp} />
         <Pressable style={styles.filterButton} onPress={toggleFilterModal}>
           <IconFontAwesome5 name="filter" size={24} color={colors.white} />
         </Pressable>
-        <ScrollView
-          style={styles.scroll}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          bounces={false}
-          contentContainerStyle={{ paddingBottom: 300 }}
-        >
-          <View style={styles.touch} />
-        </ScrollView>
       </View>
 
-      <View style={styles.list}>
-        <Pressable style={styles.circulo} onPress={toggleModal}>
-          <Image source={require('../../../../../assets/mapache.png')} style={[styles.icon, { tintColor: 'black' }]} resizeMode="contain" />
-          <Text style={styles.texto}>Favoritos</Text>
-        </Pressable>
-        <Pressable style={styles.circulo} onPress={() => navigation.navigate('PerfilUno')}>
-          <Image source={require('../../../../../assets/lavadora.png')} style={[styles.icon, { tintColor: 'black' }]} resizeMode="contain" />
-          <Text style={styles.texto}>PerfilUno</Text>
-        </Pressable>
-      </View>
+      <EmpresasList data={empresas} loading={loading} onPressCard={handleCardPress} />
     </View>
   );
 };
@@ -132,44 +149,10 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   shadowUp: {
-    position: 'absolute',
-    top: -8,
-    left: -4,
-    right: 0,
-    height: '100%',
-    width: '100%',
-    borderRadius: 100,
-    zIndex: -1000000,
-    elevation: 4
+    borderColor: colors.gray6,
+    borderWidth: 1,
   },
-  list: {
-    backgroundColor: colors.grisFondo,
-    left: 0,
-    top: 50,
-    position: 'absolute',
-    width: '98%',
-    height: 500,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    padding: 10,
-  },
-  circulo: {
-    width: 85,
-    height: 85,
-    margin: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 42.5,
-    backgroundColor: 'white',
-  },
-  texto: {
-    fontSize: 12,
-    color: 'black',
-    textAlign: 'center',
-    marginTop: 5,
-  },
+  // styles for old placeholders removed; card styles moved to EmpresaCard
   modalBackground: {
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
@@ -263,20 +246,90 @@ const styles = StyleSheet.create({
     transform: [{ rotate: '-20deg' }],
   },
   filterCard: {
-    width: 320,
+    alignSelf: 'stretch',
     backgroundColor: 'white',
     borderRadius: 20,
-    paddingVertical: 30,
-    paddingHorizontal: 25,
-    alignItems: 'center',
+    paddingTop: 56,
+    paddingBottom: 24,
+    paddingHorizontal: 16,
+    marginHorizontal: 16,
+    alignItems: 'stretch',
     position: 'relative',
     zIndex: 10,
+  },
+  sectionRow: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  sectionLabel: {
+    color: colors.secondary,
+    fontSize: 14,
+    marginRight: 8,
+    marginBottom: 16,
+    fontFamily: 'CaviarDreams_Bold',
+  },
+  sectionDivider: {
+    flex: 1,
+    height: 1,
+    backgroundColor: colors.gray7,
+    marginLeft: 8,
+  },
+  filterInput: {
+    width: '100%',
+    backgroundColor: '#ffffff',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#d0d0d0',
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    color: '#111',
+    marginBottom: 16,
+  },
+  inputRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  keywordCheck: {
+    marginLeft: 8,
+    borderWidth: 1,
+    borderColor: colors.secondary,
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    backgroundColor: '#fff',
+  },
+  selectedBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderWidth: 1,
+    borderColor: colors.secondary,
+    borderRadius: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    alignSelf: 'stretch',
+    marginBottom: 16,
+  },
+  selectedText: {
+    color: '#111',
+    flex: 1,
+  },
+  selectedClose: {
+    marginLeft: 8,
   },
   closeFilter: {
     position: 'absolute',
     top: 10,
     right: 10,
     zIndex: 11,
+    borderWidth: 1,
+    borderColor: colors.secondary,
+    borderRadius: 12,
+    padding: 6,
+    backgroundColor: '#fff',
   },
   textInput: {
     borderRadius: 40,
@@ -288,11 +341,42 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  searchiconModal: {
+  catContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginBottom: 16,
+  },
+  catChip: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 16,
+    backgroundColor: '#f1f1f1',
+    marginRight: 6,
+    marginBottom: 6,
+  },
+  catChipActive: {
     backgroundColor: colors.secondary,
-    paddingVertical: 10,
-    paddingHorizontal: 30,
-    borderRadius: 30,
+  },
+  catChipText: {
+    color: '#333',
+    fontSize: 12,
+  },
+  catChipTextActive: {
+    color: '#fff',
+  },
+  filterCta: {
+    alignSelf: 'stretch',
+    backgroundColor: colors.secondary,
+    borderRadius: 24,
+    marginTop: 16,
+    marginBottom: 8,
+  },
+  filterCtaText: {
+    color: colors.white,
+    textAlign: 'center',
+    padding: 16,
+    fontFamily: 'CaviarDreams_Bold',
   },
 });
 

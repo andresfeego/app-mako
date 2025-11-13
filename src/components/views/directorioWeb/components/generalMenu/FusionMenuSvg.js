@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Dimensions, Pressable, Animated } from 'react-native';
+import { View, StyleSheet, Dimensions, Pressable, Animated, Platform } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import colors from '../../../../../res/colors';
 import BotonMenu from '../../../../generalComponent/BotonMenu';
@@ -17,6 +17,9 @@ const SHAPE = {
 const BAR_HEIGHT = SHAPE.BAR_HEIGHT;
 const CIRCLE_SIZE = SHAPE.CIRCLE_SIZE;
 const CIRCLE_RADIUS = CIRCLE_SIZE / 2;
+// Desplazamientos verticales específicos para iOS
+const IOS_ICON_Y_OFFSET = 12;   // empuja los íconos hacia abajo
+const IOS_CENTER_BOTTOM = 18;  // separa el botón central del borde inferior
 
 class FusionMenuSvg extends Component {
   constructor(props) {
@@ -181,7 +184,10 @@ class FusionMenuSvg extends Component {
     const { activeButtons = [] } = this.props;
     if (!activeButtons.length) return null;
 
-    const translateY = this.state.merge.interpolate({ inputRange: [0, 1], outputRange: [20, 0] });
+    const translateY = this.state.merge.interpolate({
+      inputRange: [0, 1],
+      outputRange: [Platform.OS === 'ios' ? IOS_CENTER_BOTTOM : 20, 0],
+    });
     const left = this.state.circleX;
 
     return (
@@ -198,12 +204,14 @@ class FusionMenuSvg extends Component {
         </View>
 
         <Animated.View style={[styles.centerCircle, { left, bottom: translateY }]}>
-          <BotonMenu
-            type={activeButtons[this.state.selectedIndex].type}
-            icon={activeButtons[this.state.selectedIndex].icon}
-            size={24}
-            color={colors.gray2}
-          />
+          <View style={styles.centerIcon}>
+            <BotonMenu
+              type={activeButtons[this.state.selectedIndex].type}
+              icon={activeButtons[this.state.selectedIndex].icon}
+              size={24}
+              color={colors.gray2}
+            />
+          </View>
         </Animated.View>
       </View>
     );
@@ -228,6 +236,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    paddingTop: Platform.select({ ios: IOS_ICON_Y_OFFSET, android: 0 }),
   },
   iconSlot: {
     flex: 1,
@@ -250,6 +259,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.12,
     shadowRadius: 6,
     shadowOffset: { width: 0, height: 3 },
+  },
+  centerIcon: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: Platform.select({ ios: IOS_ICON_Y_OFFSET, android: 0 }),
   },
 });
 

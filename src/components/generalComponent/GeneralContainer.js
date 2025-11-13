@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Platform } from 'react-native';
 import DirectorioWeb from '../views/directorioWeb/DirectorioWeb';
 import GeneralMenu from '../views/directorioWeb/components/generalMenu/GeneralMenu';
 import { type } from '../generalComponent/BotonMenu';
@@ -53,10 +53,18 @@ const GeneralContainer = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container}> 
       <View style={styles.content}>{renderContenido()}</View>
 
-      <View style={styles.menu}>
+      <View
+        style={[
+          styles.menu,
+          {
+            height: MENU_HEIGHT + (Platform.OS === 'ios' ? 26 : 0),
+            paddingBottom: Platform.OS === 'ios' ? 26 : 0,
+          },
+        ]}
+      >
         <FusionMenuSvg activeButtons={buttons} onChangeTab={setActiveView} />
       </View>
 

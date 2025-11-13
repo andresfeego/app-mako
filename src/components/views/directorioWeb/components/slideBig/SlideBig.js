@@ -120,10 +120,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.secondary,
     borderRadius: 100,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 1,
+    shadowOffset: { width: 5, height: 2 },
+    shadowOpacity: 0.5,
     shadowRadius: 1,
-    elevation: 5,
+    elevation: 3,
     overflow: 'hidden',
   },
   headerslide: {
